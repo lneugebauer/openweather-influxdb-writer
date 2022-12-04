@@ -1,1 +1,1 @@
-# openweathermap-influxdb-writer
+# openweather-influxdb-writer
