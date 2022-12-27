@@ -15,6 +15,11 @@ import (
 	"github.com/joho/godotenv"
 )
 
+type Weather struct {
+	Description     string `json:"description"`
+	OpenWeatherIcon string `json:"icon"`
+}
+
 type Main struct {
 	Temperature float64 `json:"temp"`
 	Pressure    int     `json:"pressure"`
@@ -22,9 +27,10 @@ type Main struct {
 }
 
 type OpenWeatherData struct {
-	Main Main   `json:"main"`
-	ID   int64  `json:"id"`
-	Name string `json:"name"`
+	Weather []Weather `json:"weather"`
+	Main    Main      `json:"main"`
+	ID      int64     `json:"id"`
+	Name    string    `json:"name"`
 }
 
 type Config struct {
@@ -101,6 +107,8 @@ func writeToInfluxDb(data *OpenWeatherData) {
 	fields := map[string]interface{}{
 		"temperature": data.Main.Temperature,
 		"humidity":    data.Main.Humidity,
+		"description": data.Weather[0].Description,
+		"owIcon":      data.Weather[0].OpenWeatherIcon,
 	}
 	point := influxdb2.NewPoint(cfg.InfluxDBMeasurement, tags, fields, time.Now())
 	err := writeAPI.WritePoint(context.Background(), point)
