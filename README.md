@@ -17,6 +17,14 @@ $ crontab -e
 */15 * * * * cd /opt/openweather-influxdb-writer && ./openweather-influxdb-writer
 ```
 
+## How to obtain geolocation data
+
+You can use OpenWeather's [geocoding API](https://openweathermap.org/api/geocoding-api) to get your city's geolocation data.
+
+```
+http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
+```
+
 ## MQTT InfluxDB bridge
 
 I've also developed a program to [write weather data from MQTT devices to InfluxDB](https://github.com/lneugebauer/mqtt-influxdb-bridge). Take a look at it in case you are interested.
