@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/caarlos0/env/v6"
+	"github.com/caarlos0/env/v11"
 	influxdb2 "github.com/influxdata/influxdb-client-go/v2"
 	"github.com/joho/godotenv"
 )
@@ -120,12 +120,9 @@ func writeToInfluxDb(data *OpenWeatherData) {
 }
 
 func init() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatalf("unable to load .env file: %e", err)
-	}
+	_ = godotenv.Load()
 
-	err = env.Parse(&cfg)
+	err := env.Parse(&cfg)
 	if err != nil {
 		log.Fatalf("unable to parse ennvironment variables: %e", err)
 	}
