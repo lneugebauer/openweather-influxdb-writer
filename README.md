@@ -7,9 +7,9 @@ A simple OpenWeather InfluxDB writer developed in Go.
 ```shell
 $ mkdir /opt/openweather-influxdb-writer
 $ cd /opt/openweather-influxdb-writer
-$ wget https://github.com/lneugebauer/openweather-influxdb-writer/releases/download/{tag}/openweather-influxdb-writer_{tag}_{os}_{arch}.tar.gz && https://raw.githubusercontent.com/lneugebauer/openweather-influxdb-writer/{tag}/.env.example
+$ wget https://github.com/lneugebauer/openweather-influxdb-writer/releases/download/{tag}/openweather-influxdb-writer_{tag}_{os}_{arch}.tar.gz && https://raw.githubusercontent.com/lneugebauer/openweather-influxdb-writer/{tag}/.env.dist
 $ tar -xzf openweather-influxdb-writer_{tag}_{os}_{arch}.tar.gz
-$ mv .env.example .env
+$ mv .env.dist .env
 $ vim .env
 $ chmod +x openweather-influxdb-writer
 $ crontab -e
