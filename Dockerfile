@@ -11,6 +11,9 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /openweather-influxdb-writer
 
 FROM alpine:3.19
 
+RUN apk add --no-cache supercronic
+COPY crontab /crontab
+
 RUN addgroup -S nonroot && adduser -S nonroot -G nonroot
 
 WORKDIR /
@@ -21,4 +24,4 @@ RUN chown nonroot:nonroot /openweather-influxdb-writer
 
 USER nonroot:nonroot
 
-CMD ["./openweather-influxdb-writer"]
+CMD ["supercronic", "/crontab"]
